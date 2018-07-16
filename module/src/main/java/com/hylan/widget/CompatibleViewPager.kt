@@ -13,7 +13,7 @@ import android.view.MotionEvent
  * @author  lifuhai@linkcircle.cn
  * @date 2018/5/2 14:28
  */
-class CompatibleViewPager : ViewPager {
+open class CompatibleViewPager : ViewPager {
     var mHelper: ViewPagerHelper? = null
     var mNoScroll: Boolean = false
 
