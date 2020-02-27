@@ -2,9 +2,10 @@ package com.hylan.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
+import androidx.viewpager.widget.ViewPager
+import kotlin.math.abs
 
 /**
  * CompatibleViewPager
@@ -57,13 +58,9 @@ open class CompatibleViewPager : ViewPager {
     override fun setCurrentItem(item: Int, smoothScroll: Boolean) {
         val scroller: ViewPagerScroller? = mHelper?.getScroller()
         scroller?.let {
-            if (Math.abs((currentItem - item)) > 1) {//如果页面相隔大于1,就设置页面切换的动画的时间为0
-                scroller.setNoDuration(true)
-                super.setCurrentItem(item, smoothScroll)
-            } else {
-                scroller.setNoDuration(false)
-                super.setCurrentItem(item, smoothScroll)
-            }
+            //如果页面相隔大于1,就设置页面切换的动画的时间为0
+            it.setNoDuration(abs((currentItem - item)) > 1)
+            super.setCurrentItem(item, smoothScroll)
         }
     }
 }
